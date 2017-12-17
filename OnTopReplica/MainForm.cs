@@ -51,6 +51,9 @@ namespace OnTopReplica {
                 menuContext, menuWindows, menuOpacity, menuResize, menuFullscreenContext
             );
 
+            //Start timer
+            InitializeTimer();
+
             //Set to Key event preview
             this.KeyPreview = true;
 
@@ -456,6 +459,23 @@ namespace OnTopReplica {
         }
 
         #endregion
-        
+
+        #region Timer
+        private void InitializeTimer()
+        {
+            // Called when the application starts
+            timerRefresh.Interval = 1000;
+            timerRefresh.Tick += new EventHandler(timer_Tick);
+            timerRefresh.Enabled = true;
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            //_thumbnailPanel.UnsetThumbnail();
+            var handle = Win32Helper.GetCurrentForegroundWindow();
+            //SetThumbnail(handle, null);
+        }
+        #endregion
+
     }
 }
